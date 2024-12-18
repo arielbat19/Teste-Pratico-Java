@@ -1,0 +1,4 @@
+package com.teste.pratico.models.request;
+
+public record CriaNovaVaga() {
+}

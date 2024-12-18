@@ -1,0 +1,4 @@
+package com.teste.pratico.models.response;
+
+public class Teste {
+}

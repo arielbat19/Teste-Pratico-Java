@@ -1,0 +1,18 @@
+package com.teste.pratico.controller.impl;
+
+import com.teste.pratico.controller.SolicitanteController;
+import com.teste.pratico.models.request.CriarNovoSolicitanteRequest;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequiredArgsConstructor
+public class SolicitanteControllerImpl implements SolicitanteController {
+
+
+    @Override
+    public ResponseEntity<Void> save(final CriarNovoSolicitanteRequest criarNovoSolicitanteRequest) {
+        return null;
+    }
+}

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+    <title>Consultar Agendamento</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-color: #f4f4f9;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            width: 80%;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin: 0 auto;
+        }
+
+        .form-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px; /* Espaçamento entre os campos */
+        }
+
+        .form-grid .field {
+            flex: 1; /* Cada campo ocupa o mesmo espaço */
+            min-width: 200px; /* Largura mínima de cada campo */
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px; /* Espaçamento entre os botões */
+            margin-top: 20px;
+        }
+
+        p\:commandButton, p\:button {
+            width: 150px;
+        }
+
+        .btn-custom {
+            width: 150px;
+            height: 40px;
+            font-size: 14px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .header .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .footer {
+            background-color: #007bff;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-size: 14px;
+            margin-top: auto;
+            width: 100%;
+        }
+
+        .content {
+            margin-top: 100px; /* Espaço abaixo do cabeçalho */
+            display: flex;
+            flex-direction: column; /* Elementos alinhados verticalmente */
+            align-items: center;
+            gap: 20px; /* Espaçamento entre o formulário e a tabela */
+        }
+
+        .form-grid label {
+            color: #495057 !important;
+            font-weight: bold;
+        }
+
+        #tabelaAgendamentos {
+            width: 80%;
+            margin: 0 auto; /* Centraliza a tabela */
+        }
+    </style>
+</h:head>
+
+<h:body>
+    <!-- Header -->
+    <div class="header">
+        <div class="logo">Agendamento</div>
+        <nav>
+            <a href="/pages/index.xhtml" style="color: white; text-decoration: none;">Home</a>
+        </nav>
+    </div>
+
+    <!-- Conteúdo Principal -->
+    <div class="content">
+        <!-- Growl para mensagens globais -->
+        <p:growl id="msgs" showDetail="true" life="5000"/>
+
+        <h:form id="formConsulta">
+            <p:panel styleClass="container">
+                <f:facet name="header">
+                    <h2 style="text-align: center; margin: 0;">Consultar Agendamento</h2>
+                </f:facet>
+
+                <!-- Formulário em grid -->
+                <div class="form-grid">
+                    <!-- Campo Solicitante -->
+                    <div class="field">
+                        <label>Solicitante:</label>
+                        <p:selectOneMenu id="solicitante" value="#{consultaAgendamentoBean.solicitanteId}" required="true"
+                                         requiredMessage="O solicitante é obrigatório">
+                            <f:selectItem itemLabel="Selecione um Solicitante" itemValue=""/>
+                            <f:selectItems value="#{consultaAgendamentoBean.listaSolicitantes}" var="p"
+                                           itemLabel="#{p.nome}" itemValue="#{p.id}"/>
+                        </p:selectOneMenu>
+                    </div>
+
+                    <!-- Campo Data Início -->
+                    <div class="field">
+                        <label>Data Início:</label>
+                        <p:calendar id="dataInicio" value="#{consultaAgendamentoBean.dataInicio}"
+                                    placeholder="Data de início"
+                                    required="true"
+                                    requiredMessage="A data de início é obrigatória"/>
+                    </div>
+
+                    <!-- Campo Data Fim -->
+                    <div class="field">
+                        <label>Data Fim:</label>
+                        <p:calendar id="dataFim" value="#{consultaAgendamentoBean.dataFim}"
+                                    placeholder="Data de fim"
+                                    required="true"
+                                    requiredMessage="A data de fim é obrigatória"/>
+                    </div>
+                </div>
+
+                <!-- Botões -->
+                <div class="button-container">
+                    <p:commandButton value="Consultar"
+                                     action="#{consultaAgendamentoBean.consultarAgendamentos}"
+                                     styleClass="btn-custom"
+                                     update="@form msgs tabelaAgendamentos"/>
+                    <p:button value="Voltar" outcome="/pages/index.xhtml" styleClass="btn-custom"/>
+                </div>
+            </p:panel>
+        </h:form>
+
+        <!-- Tabela de Agendamentos -->
+        <div>
+            <p:dataTable id="tabelaAgendamentos"
+                         var="agendamento"
+                         value="#{consultaAgendamentoBean.consultaAgendamentos}"
+                         emptyMessage="Nenhum agendamento encontrado"
+                         paginator="true"
+                         rows="5"
+                         paginatorPosition="bottom">
+                <p:column headerText="Solicitante" style="text-align: left;">
+                    #{agendamento.solicitante.nome}
+                </p:column>
+                <p:column headerText="Data Agendamento" style="text-align: left;">
+                    #{agendamento.data}
+                </p:column>
+                <p:column headerText="Número Agendamento" style="text-align: left;">
+                    #{agendamento.numero}
+                </p:column>
+                <p:column headerText="Motivo" style="text-align: left;">
+                    #{agendamento.motivo}
+                </p:column>
+            </p:dataTable>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>© 2024 Sistema de Agendamento. Todos os direitos reservados.</p>
+    </div>
+</h:body>
+</html>

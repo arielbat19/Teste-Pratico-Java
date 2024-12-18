@@ -1,0 +1,4 @@
+package com.teste.pratico.controller;
+
+public interface AgendamentoController {
+}
