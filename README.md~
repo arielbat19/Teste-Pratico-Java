@@ -104,4 +104,4 @@ O sistema é voltado para a gestão de agendamentos e controle de vagas, oferece
 ## Como Executar o Projeto
 1. Clone o repositório para sua máquina local:
    ```bash
-   git clone <url-do-repositorio>
+   git clone https://github.com/arielbat19/Teste-Pratico-Java.git
