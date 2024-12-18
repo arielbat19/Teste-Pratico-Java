@@ -36,8 +36,11 @@ O sistema é voltado para a gestão de agendamentos e controle de vagas, oferece
  
       logging.level.org.springframework.web=DEBUG
       logging.level.org.hibernate=DEBUG
- 
-      spring.datasource.url=jdbc:hsqldb:hsql://localhost:9001/agenda;serverTimeZone=America/Sao_Paulo
+
+      ##Conexao via servidor
+      spring.datasource.url=jdbc:hsqldb:file:C:\\Projetos\\RepositoriosGitLocalLogOne\\Teste-Pratico-Desenvolvedor-Java\\database\\agenda\\agenda;hsqldb.lock_file=false
+      ##Conexao via arquivo
+      #spring.datasource.url=jdbc:hsqldb:hsql://localhost:9001/agenda;serverTimeZone=America/Sao_Paulo
       spring.datasource.username=sa
       spring.datasource.password=sa
       spring.datasource.driver-class-name=org.hsqldb.jdbc.JDBCDriver
