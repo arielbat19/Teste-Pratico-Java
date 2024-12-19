@@ -132,10 +132,10 @@
                     <!-- Campo Solicitante -->
                     <div class="field">
                         <label>Solicitante:</label>
-                        <p:selectOneMenu id="solicitante" value="#{consultaAgendamentoBean.solicitanteId}" required="true"
+                        <p:selectOneMenu id="solicitante" value="#{consultaTotalAgendamentoBean.solicitanteId}" required="true"
                                          requiredMessage="O solicitante é obrigatório">
                             <f:selectItem itemLabel="Selecione um Solicitante" itemValue=""/>
-                            <f:selectItems value="#{consultaAgendamentoBean.listaSolicitantes}" var="p"
+                            <f:selectItems value="#{consultaTotalAgendamentoBean.listaSolicitantes}" var="p"
                                            itemLabel="#{p.nome}" itemValue="#{p.id}"/>
                         </p:selectOneMenu>
                     </div>
@@ -143,7 +143,7 @@
                     <!-- Campo Data Início -->
                     <div class="field">
                         <label>Data Início:</label>
-                        <p:calendar id="dataInicio" value="#{consultaAgendamentoBean.dataInicio}"
+                        <p:calendar id="dataInicio" value="#{consultaTotalAgendamentoBean.dataInicio}"
                                     placeholder="Data de início"
                                     required="true"
                                     requiredMessage="A data de início é obrigatória"/>
@@ -152,7 +152,7 @@
                     <!-- Campo Data Fim -->
                     <div class="field">
                         <label>Data Fim:</label>
-                        <p:calendar id="dataFim" value="#{consultaAgendamentoBean.dataFim}"
+                        <p:calendar id="dataFim" value="#{consultaTotalAgendamentoBean.dataFim}"
                                     placeholder="Data de fim"
                                     required="true"
                                     requiredMessage="A data de fim é obrigatória"/>
@@ -162,7 +162,7 @@
                 <!-- Botões -->
                 <div class="button-container">
                     <p:commandButton value="Consultar"
-                                     action="#{consultaAgendamentoBean.consultarAgendamentos}"
+                                     action="#{consultaTotalAgendamentoBean.consultarTotalAgendamentos}"
                                      styleClass="btn-custom"
                                      update="@form msgs tabelaAgendamentos"/>
                     <p:button value="Voltar" outcome="/pages/index.xhtml" styleClass="btn-custom"/>
@@ -174,7 +174,7 @@
         <div>
             <p:dataTable id="tabelaAgendamentos"
                          var="agendamento"
-                         value="#{consultaAgendamentoBean.consultaAgendamentos}"
+                         value="#{consultaTotalAgendamentoBean.consultaAgendamentos}"
                          emptyMessage="Nenhum agendamento encontrado"
                          paginator="true"
                          rows="5"

@@ -3,8 +3,8 @@ package com.teste.pratico.beans;
 import com.teste.pratico.controller.ConsultaAgendamentoController;
 import com.teste.pratico.entity.Solicitante;
 import com.teste.pratico.models.request.ConsultaAgendamentosRequest;
-import com.teste.pratico.models.response.ConsultaAgendamentoResponse;
-import com.teste.pratico.models.response.ConsultaAgendamentos;
+import com.teste.pratico.models.response.ConsultaTotalAgendamentos;
+import com.teste.pratico.models.response.ConsultaTotalAgendamentosResponse;
 import com.teste.pratico.service.SolicitanteService;
 import lombok.Data;
 import org.apache.logging.log4j.LogManager;
@@ -20,7 +20,6 @@ import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -29,21 +28,21 @@ import java.util.List;
 @ManagedBean
 @ViewScoped
 @Component
-public class ConsultaAgendamentoBean {
+public class ConsultaTotalAgendamentoBean {
 
     private List<Solicitante> listaSolicitantes;
     private Long solicitanteId;
     private Date dataInicio;
     private Date dataFim;
-    private List<ConsultaAgendamentoResponse> agendamentos;
-    private List<ConsultaAgendamentos> consultaAgendamentos = new ArrayList<>();
+    private List<ConsultaTotalAgendamentosResponse> agendamentos;
+    private List<ConsultaTotalAgendamentos> consultaAgendamentos = new ArrayList<>();
 
     @Autowired
     private ConsultaAgendamentoController agendamentoControllerConsulta;
     @Autowired
     private SolicitanteService solicitanteService;
 
-    private static final Logger logger = LogManager.getLogger(ConsultaAgendamentoBean.class);
+    private static final Logger logger = LogManager.getLogger(ConsultaTotalAgendamentos.class);
 
     @PostConstruct
     public void init() {
@@ -51,7 +50,7 @@ public class ConsultaAgendamentoBean {
         listaSolicitantes.forEach(solicitante -> solicitante.setNome(solicitante.getNome().toUpperCase()));
     }
 
-    public void consultarAgendamentos() {
+    public void consultarTotalAgendamentos() {
         Solicitante solicitanteSelecionado = new Solicitante(solicitanteId, null);
         LocalDate dataInicioLocalDate = dataInicio.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         LocalDate dataFimLocalDate = dataFim.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
@@ -59,8 +58,8 @@ public class ConsultaAgendamentoBean {
         ConsultaAgendamentosRequest request = new ConsultaAgendamentosRequest(dataInicioLocalDate, dataFimLocalDate, solicitanteSelecionado);
 
         try {
-            ResponseEntity<List<ConsultaAgendamentoResponse>> response = agendamentoControllerConsulta.getAgendamentos(request);
-            List<ConsultaAgendamentoResponse> agendamentos = response.getBody();
+            ResponseEntity<List<ConsultaTotalAgendamentosResponse>> response = agendamentoControllerConsulta.consultarTotalAgendamentos(request);
+            List<ConsultaTotalAgendamentosResponse> agendamentos = response.getBody();
 
             if (agendamentos == null || agendamentos.isEmpty()) {
                 FacesContext.getCurrentInstance().addMessage(null,
@@ -83,27 +82,24 @@ public class ConsultaAgendamentoBean {
         limparCampos();
     }
 
-    private void processarAgendamentos(List<ConsultaAgendamentoResponse> novosAgendamentos) {
+    private void processarAgendamentos(List<ConsultaTotalAgendamentosResponse> novosAgendamentos) {
         if (novosAgendamentos != null) {
             novosAgendamentos.forEach(response -> {
-                ConsultaAgendamentos agendamento = converterResponseParaAgendamento(response);
+                ConsultaTotalAgendamentos agendamento = converterResponseParaAgendamento(response);
                 consultaAgendamentos.add(agendamento);
             });
         }
     }
 
-    private ConsultaAgendamentos converterResponseParaAgendamento(ConsultaAgendamentoResponse response) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        String dataFormatada = response.data().format(formatter);
-
-        ConsultaAgendamentos agendamento = new ConsultaAgendamentos();
+    private ConsultaTotalAgendamentos converterResponseParaAgendamento(ConsultaTotalAgendamentosResponse response) {
+        ConsultaTotalAgendamentos agendamento = new ConsultaTotalAgendamentos();
         Solicitante solicitante = new Solicitante();
         solicitante.setId(response.solicitante().getId());
         solicitante.setNome(response.solicitante().getNome().toUpperCase());
         agendamento.setSolicitante(solicitante);
-        agendamento.setMotivo(response.motivo().toUpperCase());
-        agendamento.setNumero(response.numero());
-        agendamento.setData(dataFormatada);
+        agendamento.setTotalAgendamentos(response.totalAgendamentos());
+        agendamento.setPercentual(response.percentual());
+        agendamento.setQuantidadeVagas(response.quantidadeVagas());
         return agendamento;
     }
 

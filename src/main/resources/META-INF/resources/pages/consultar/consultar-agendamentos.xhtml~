@@ -183,7 +183,9 @@
                     #{agendamento.solicitante.nome}
                 </p:column>
                 <p:column headerText="Data Agendamento" style="text-align: left;">
-                    #{agendamento.data}
+                    <h:outputText value="#{agendamento.data}">
+                        <f:convertDateTime pattern="dd/MM/yyyy"/>
+                    </h:outputText>
                 </p:column>
                 <p:column headerText="Número Agendamento" style="text-align: left;">
                     #{agendamento.numero}

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://xmlns.jcp.org/jsf/html"
+	  xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Menu de Navegação</title>
+	<style>
+		/* Menubar */
+        .ui-menubar {
+            background-color: #007bff !important; /* Cor de fundo igual ao footer */
+            width: 100% !important; /* Ocupa toda a largura */
+            border: none !important; /* Remove a borda */
+            margin: 0 !important; /* Remove qualquer margem */
+            padding: 10px 20px !important; /* Aumenta o padding para mais espaçamento */
+            box-sizing: border-box; /* Garante que o padding não afete a largura total */
+        }
+
+        /* Menu dropdown */
+        .ui-menu.ui-menubar {
+            background-color: #007bff !important; /* Cor de fundo igual ao footer */
+            border: none !important; /* Remove a borda */
+        }
+
+        /* Itens do menu */
+        .ui-menuitem {
+            color: white !important; /* Cor do texto dos itens */
+            background-color: #007bff !important; /* Cor de fundo igual ao menu */
+            font-weight: bold; /* Deixa o texto em negrito */
+            border-radius: 4px; /* Bordas arredondadas nos itens */
+            padding: 8px 16px; /* Padding confortável para os itens */
+            text-transform: uppercase; /* Deixa o texto em maiúsculo */
+        }
+
+        /* Hover nos itens do menu */
+        .ui-menuitem:hover {
+            background-color: #0056b3 !important; /* Cor de fundo mais suave ao passar o mouse */
+        }
+
+        .ui-menubar .ui-submenu-header {
+            color: white !important; /* Cor do texto do submenu */
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #007bff;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-size: 14px;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+        }
+
+        /* Centralizar o conteúdo da página */
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            font-family: 'Arial', sans-serif;
+        }
+
+        /* Conteúdo principal */
+        .main-content {
+            flex-grow: 1; /* Faz o conteúdo ocupar o espaço restante */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 50px 20px; /* Espaçamento em volta do conteúdo */
+            box-sizing: border-box;
+        }
+
+        /* Ajustes para o texto de boas-vindas */
+        .main-content h1 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: #007bff; /* Cor do título */
+        }
+
+        .main-content p {
+            font-size: 18px;
+            color: #666;
+        }
+
+        /* Ajustes no layout do menubar */
+        h:form {
+            padding: 0;
+            margin: 0;
+            width: 100%;
+        }
+
+        /* Estilo para o botão */
+        .ui-button {
+            background-color: #007bff !important;
+            color: white !important;
+            border-radius: 4px;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .ui-button:hover {
+            background-color: #0056b3 !important;
+        }
+	</style>
+</h:head>
+
+<h:body>
+	<h:form>
+		<!-- Menu Principal -->
+		<p:menubar>
+			<!-- Menu Cadastrar -->
+			<p:submenu label="Cadastrar">
+				<p:menuitem value="Cadastrar Vaga" outcome="/pages/cadastrar/cadastrar-vaga.xhtml" />
+				<p:menuitem value="Cadastrar Solicitante" outcome="/pages/cadastrar/cadastrar-solicitante.xhtml" />
+				<p:menuitem value="Cadastrar Agendamento" outcome="/pages/cadastrar/cadastrar-agendamento.xhtml" />
+			</p:submenu>
+
+			<!-- Menu Consultar -->
+			<p:submenu label="Consultar">
+				<p:menuitem value="Consulta de Agendamento" outcome="/pages/consultar/consultar-agendamentos.xhtml" />
+				<p:menuitem value="Consulta Total de Agendamento" outcome="/pages/consultar/consulta-total-agendamentos.xhtml" />
+			</p:submenu>
+		</p:menubar>
+	</h:form>
+
+	<!-- Conteúdo da Página -->
+	<div class="main-content">
+		<h1>Bem-vindo ao Sistema de Agendamentos!</h1>
+		<p>Faça o cadastro de vagas, solicitantes e agendamentos de forma rápida e fácil.</p>
+	</div>
+
+	<!-- Footer -->
+	<div class="footer">
+		<p>© 2024 Sistema de Agendamento. Todos os direitos reservados.</p>
+	</div>
+</h:body>
+</html>

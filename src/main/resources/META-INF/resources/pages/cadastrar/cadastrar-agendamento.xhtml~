@@ -138,34 +138,47 @@
         <h:form id="formCadastro">
             <p:panel styleClass="container">
                 <f:facet name="header">
-                    <h2 style="text-align: center; margin: 0;">Consultar Agendamento</h2>
+                    <h2 style="text-align: center; margin: 0;">Cadastrar Agendamento</h2>
                 </f:facet>
 
                 <!-- Formulário em grade -->
                 <div class="form-grid">
                     <!-- Participante (Largura total) -->
-                <div class="form-group full-width">
-                    <label>Participante:</label>
-                    <p:selectOneMenu id="solicitante" value="#{agendamentoBean.solicitanteId}" required="true"
-                                     requiredMessage="O participante é obrigatório">
-                        <f:selectItem itemLabel="Selecione um Solicitante" itemValue="" />
-                        <f:selectItems value="#{agendamentoBean.listaSolicitantes}" var="p"
-                                       itemLabel="#{p.nome}" itemValue="#{p}" />
-                    </p:selectOneMenu>
-                </div>
+                    <div class="form-group full-width">
+                        <label>Participante:</label>
+                        <p:selectOneMenu id="solicitante" value="#{agendamentoBean.solicitanteId}" required="true"
+                                         requiredMessage="O participante é obrigatório">
+                            <f:selectItem itemLabel="Selecione um Solicitante" itemValue="" />
+                            <f:selectItems value="#{agendamentoBean.listaSolicitantes}" var="p"
+                                           itemLabel="#{p.nome}" itemValue="#{p.id}" />
+                        </p:selectOneMenu>
+                    </div>
 
-                <!-- Data de Início (Largura total) -->
-                <div class="form-group full-width">
-                    <label>Data de Início:</label>
-                    <p:calendar id="dataInicio" value="#{agendamentoBean.dataInicio}" required="true"
-                                requiredMessage="A data de início é obrigatória" placeholder="Selecione a data" />
-                </div>
+                    <!-- Motivo (Largura total) -->
+                    <div class="form-group full-width">
+                        <label>Motivo do Agendamento:</label>
+                        <p:inputTextarea id="motivo" value="#{agendamentoBean.motivoAgendamento}"
+                                         required="true" requiredMessage="O motivo do agendamento é obrigatório"
+                                         rows="4" cols="30" placeholder="Descreva o motivo..." />
+                    </div>
 
-                <!-- Data de Fim (Largura total) -->
-                <div class="form-group full-width">
-                    <label>Data de Fim:</label>
-                    <p:calendar id="dataFim" value="#{agendamentoBean.dataFim}" required="true"
-                                requiredMessage="A data de fim é obrigatória" placeholder="Selecione a data" />
+                    <!-- Número do Agendamento -->
+                    <div class="form-group larger-width">
+                        <label>Número do Agendamento:</label>
+                        <p:inputText id="numeroAgendamento" type="text" value="#{agendamentoBean.numeroAgendamento}"
+                                     required="true" requiredMessage="O número do agendamento é obrigatório"
+                                     placeholder="Digite o número do agendamento"
+                                     maxlength="10"
+                                     oninput="this.value = this.value.replace(/[^0-9]/g, '');" />
+                    </div>
+
+                    <!-- Data do Agendamento -->
+                    <div class="form-group smaller-width">
+                        <label>Data do Agendamento:</label>
+                        <p:calendar id="dataAgendamento" value="#{agendamentoBean.dataAgendamento}"
+                                    required="true" requiredMessage="A data do agendamento é obrigatória"
+                                    placeholder="Selecione a data" />
+                    </div>
                 </div>
 
                 <!-- Botões -->
