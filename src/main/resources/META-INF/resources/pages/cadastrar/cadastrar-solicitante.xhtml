@@ -7,7 +7,6 @@
 <h:head>
     <title>Cadastrar Solicitante</title>
     <style>
-        /* Resetando margens e padding padrão do body e html */
         body, html {
             margin: 0;
             padding: 0;
@@ -17,7 +16,7 @@
         body {
             display: flex;
             flex-direction: column;
-            justify-content: flex-start; /* Garantir que o conteúdo comece desde o topo */
+            justify-content: flex-start;
             align-items: center;
             background-color: #f4f4f9;
             font-family: Arial, sans-serif;
@@ -61,7 +60,6 @@
             text-align: center;
         }
 
-        /* Header personalizado */
         .header {
             display: flex;
             justify-content: space-between;
@@ -71,10 +69,10 @@
             padding: 10px 20px;
             width: 100%;
             box-sizing: border-box;
-            position: fixed; /* Fixar o header no topo */
-            top: 0; /* Garantir que o header fique no topo */
+            position: fixed;
+            top: 0;
             left: 0;
-            z-index: 1000; /* Garantir que o header fique sobre outros elementos */
+            z-index: 1000;
         }
 
         .header .logo {
@@ -97,7 +95,7 @@
         }
 
         .header nav a:hover {
-            color: #ffd700; /* Cor dourada quando passar o mouse */
+            color: #ffd700;
         }
 
         /* Footer */
@@ -113,9 +111,8 @@
             width: 100%;
         }
 
-        /* Ajuste para o conteúdo não ficar colado ao header */
         .content {
-            margin-top: 100px; /* Ajuste para o conteúdo ter um espaço suficiente abaixo do header */
+            margin-top: 100px;
             width: 100%;
             display: flex;
             justify-content: center;

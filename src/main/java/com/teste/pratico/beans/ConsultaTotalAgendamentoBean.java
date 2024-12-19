@@ -18,7 +18,6 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
-import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
@@ -52,6 +51,7 @@ public class ConsultaTotalAgendamentoBean {
     }
 
     public void consultarTotalAgendamentos() {
+        consultaAgendamentos.clear();
         Solicitante solicitanteSelecionado = new Solicitante(solicitanteId, null);
         LocalDate dataInicioLocalDate = dataInicio.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         LocalDate dataFimLocalDate = dataFim.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();

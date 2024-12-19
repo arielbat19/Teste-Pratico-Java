@@ -18,7 +18,6 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
@@ -53,6 +52,7 @@ public class ConsultaAgendamentoBean {
     }
 
     public void consultarAgendamentos() {
+        consultaAgendamentos.clear();
         Solicitante solicitanteSelecionado = new Solicitante(solicitanteId, null);
         LocalDate dataInicioLocalDate = dataInicio.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         LocalDate dataFimLocalDate = dataFim.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
@@ -75,7 +75,7 @@ public class ConsultaAgendamentoBean {
                 FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("msgs");
             }
         } catch (Exception e) {
-            logger.error("Erro ao cadastrar vaga", e);  // Log do erro
+            logger.error("Erro ao cadastrar vaga", e);
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro ao consultar agendamentos!", e.getMessage()));
             FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("msgs");

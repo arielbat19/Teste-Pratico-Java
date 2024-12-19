@@ -7,7 +7,6 @@
 <h:head>
     <title>Cadastrar Agendamento</title>
     <style>
-        /* Resetando margens e padding padrão do body e html */
         body, html {
             margin: 0;
             padding: 0;
@@ -32,23 +31,23 @@
 
         .form-group {
             display: flex;
-            flex-direction: column; /* Labels ficam acima */
+            flex-direction: column;
             margin-bottom: 15px;
         }
 
         .form-group label {
             font-weight: bold;
-            margin-bottom: 5px; /* Espaço entre label e campo */
+            margin-bottom: 5px;
         }
 
         .form-grid {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px; /* Espaço entre os campos */
+            gap: 10px;
         }
 
         .form-grid .full-width {
-            flex: 0 0 100%; /* Campos de largura total */
+            flex: 0 0 100%;
         }
 
         .form-grid .larger-width {
@@ -56,13 +55,13 @@
         }
 
         .form-grid .smaller-width {
-            flex: 0 0 30%; /* Campo menor (30%) */
+            flex: 0 0 30%;
         }
 
         .button-container {
             display: flex;
             justify-content: center;
-            gap: 10px; /* Espaço entre os botões */
+            gap: 10px;
         }
 
         p\:commandButton, p\:button {
@@ -75,7 +74,6 @@
             font-size: 14px;
         }
 
-        /* Header personalizado */
         .header {
             display: flex;
             justify-content: space-between;

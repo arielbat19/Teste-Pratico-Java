@@ -18,7 +18,6 @@ public interface AgendamentoRepository extends JpaRepository<Agendamento, Long> 
     @Query("SELECT COUNT(a) FROM Agendamento a WHERE a.solicitante = :solicitante AND a.data = :data")
     int contarAgendamentosPorSolicitanteEData(@Param("solicitante") Solicitante solicitante, @Param("data") LocalDate data);
 
-
     List<Agendamento> findByDataBetweenAndSolicitanteId(LocalDate inicio, LocalDate fim, Long solicitanteId);
 
     @Query("SELECT COALESCE(SUM(v.quantidade), 0) FROM Vaga v WHERE " +

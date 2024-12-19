@@ -35,7 +35,7 @@ public class SolicitanteBean {
                     new FacesMessage(FacesMessage.SEVERITY_INFO, "Solicitante incluído com sucesso!", ""));
             FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("msgs");
         } catch (Exception e) {
-            logger.error("Erro ao cadastrar vaga", e);  // Log do erro
+            logger.error("Erro ao cadastrar vaga", e);
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro ao cadastrar solicitante!", e.getMessage()));
             FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("msgs");

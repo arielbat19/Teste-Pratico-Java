@@ -2,15 +2,12 @@ package com.teste.pratico.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-import lombok.With;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Date;
 
 @Entity
 @Table(name = "AGENDAMENTO")
-@With
 @AllArgsConstructor
 @NoArgsConstructor
 public class Agendamento {

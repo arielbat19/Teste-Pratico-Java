@@ -1,12 +1,12 @@
 package com.teste.pratico.entity;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "SOLICITANTE")
-@With
 @AllArgsConstructor
 @NoArgsConstructor
 public class Solicitante {

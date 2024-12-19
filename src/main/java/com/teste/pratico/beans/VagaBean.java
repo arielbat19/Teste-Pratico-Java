@@ -8,13 +8,10 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
-import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
@@ -46,7 +43,7 @@ public class VagaBean {
                     new FacesMessage(FacesMessage.SEVERITY_INFO, "Vaga incluída com sucesso!", ""));
             FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("msgs");
         } catch (Exception e) {
-            logger.error("Erro ao cadastrar vaga", e);  // Log do erro
+            logger.error("Erro ao cadastrar vaga", e);
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro ao cadastrar vaga!", e.getMessage()));
             FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("msgs");

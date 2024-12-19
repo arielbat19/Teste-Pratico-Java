@@ -3,7 +3,6 @@ package com.teste.pratico.controller;
 import com.teste.pratico.models.request.ConsultaAgendamentosRequest;
 import com.teste.pratico.models.response.ConsultaAgendamentoResponse;
 import com.teste.pratico.models.response.ConsultaTotalAgendamentosResponse;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
